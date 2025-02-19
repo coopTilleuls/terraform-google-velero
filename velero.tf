@@ -16,7 +16,7 @@
 
 module "service_account" {
   source  = "terraform-google-modules/service-accounts/google"
-  version = "4.3.0"
+  version = "4.5.0"
 
   project_id = var.project
 
@@ -27,7 +27,7 @@ module "service_account" {
 
 module "custom_role" {
   source  = "terraform-google-modules/iam/google//modules/custom_role_iam"
-  version = "7.7.1"
+  version = "~> 8.1"
 
   target_level = "project"
   target_id    = var.project
@@ -68,7 +68,7 @@ module "custom_role" {
 
 module "iam_service_accounts" {
   source  = "terraform-google-modules/iam/google//modules/service_accounts_iam"
-  version = "7.7.1"
+  version = "~> 8.0"
 
   project = var.project
   mode    = "authoritative"
@@ -92,7 +92,7 @@ module "iam_service_accounts" {
 
 module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "6.1.0"
+  version = "~> 9.1"
 
   name            = format("%s-%s", var.project, local.service)
   project_id      = var.project
@@ -114,7 +114,7 @@ module "bucket" {
 
 module "iam_storage_buckets" {
   source  = "terraform-google-modules/iam/google//modules/storage_buckets_iam"
-  version = "7.7.1"
+  version = "~> 8.0"
 
   storage_buckets = [module.bucket.bucket.name]
   mode            = "authoritative"
