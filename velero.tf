@@ -48,6 +48,7 @@ module "custom_role" {
     "compute.projects.get",
     "compute.snapshots.get",
     "compute.snapshots.create",
+    "compute.snapshots.setLabels",
     "compute.snapshots.useReadOnly",
     "compute.snapshots.delete",
     "compute.zones.get"
